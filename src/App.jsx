@@ -8,6 +8,7 @@ function App() {
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [year, setYear] = useState('');
 
   const handleSearch = async () => {
     if (!query.trim()) return;
@@ -17,7 +18,8 @@ function App() {
     setMovies([]);
   
     try {
-      const response = await fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${query}`);
+      const url = `http://www.omdbapi.com/?apikey=${API_KEY}&s=${query}${year ? `&y=${year}` : ''}`;
+      const response = await fetch(url);
       const data = await response.json();
   
       if (data.Response === 'True') {
@@ -46,6 +48,13 @@ function App() {
           onChange={handleInputChange}
           placeholder="Ingresa el nombre de una película"
         />
+        <input
+          type="text"
+          value={year}
+          onChange={(e) => setYear(e.target.value)}
+          placeholder="Año de lanzamiento (opcional)"
+          style={{ marginLeft: '0.5rem' }}
+        />
         <button onClick={handleSearch}>Buscar</button>
       </div>
 
@@ -65,7 +74,7 @@ function App() {
           </div>
         ))}
       </div>
-      
+
     </div>
   );
 }
