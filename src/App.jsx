@@ -51,6 +51,20 @@ function App() {
 
       {loading && <p>Cargando...</p>}
       {error && <p style={{ color: 'red' }}>{error}</p>}
+
+      <div>
+        {movies.map((movie) => (
+          <div key={movie.imdbID} style={{ marginBottom: '1rem' }}>
+            <img
+              src={movie.Poster !== 'N/A' ? movie.Poster : 'https://via.placeholder.com/150'}
+              alt={movie.Title}
+              width="150"
+            />
+            <h3>{movie.Title}</h3>
+            <p>{movie.Year}</p>
+          </div>
+        ))}
+      </div>
       
     </div>
   );
