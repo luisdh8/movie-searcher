@@ -38,6 +38,14 @@ function App() {
     setQuery(e.target.value);
   };
 
+  const handleClear = () => {
+    setQuery('');
+    setYear('');
+    setMovies([]);
+    setError('');
+  };
+  
+
   return (
     <div className="app">
       <h1>🎬 Buscador de Películas</h1>
@@ -56,6 +64,11 @@ function App() {
           style={{ marginLeft: '0.5rem' }}
         />
         <button onClick={handleSearch}>Buscar</button>
+        <button onClick={handleSearch}>Buscar</button>
+        <button onClick={handleClear}>
+          Limpiar
+        </button>
+
       </div>
 
       {loading && <p>Cargando...</p>}
