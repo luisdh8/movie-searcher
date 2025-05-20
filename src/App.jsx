@@ -48,6 +48,10 @@ function App() {
         />
         <button onClick={handleSearch}>Buscar</button>
       </div>
+
+      {loading && <p>Cargando...</p>}
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+      
     </div>
   );
 }
